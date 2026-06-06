@@ -1,0 +1,67 @@
+<div class="container">
+  <p-card
+    [style]="{
+      width: '25rem',
+      overflow: 'hidden',
+      height: 'auto',
+    }"
+  >
+    <!-- <div class="card flex flex-wrap justify-center items-end gap-4"> -->
+    <form
+      [formGroup]="details"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 10px;
+      "
+    >
+      <ng-container *ngFor="let field of fields">
+        <div
+          *ngIf="field.type == 'radio'"
+          style="display: flex; flex-direction: row; column-gap: 8px"
+        >
+          <label class="ml-2">Test Drive : </label>
+          <ng-container *ngFor="let option of field.option">
+            <p-radiobutton
+              [value]="option"
+              [name]="field.controlName"
+              [formControlName]="field.controlName"
+              inputId="field.label"
+            />
+
+            <label for="field.label" class="ml-2">{{ option }}</label>
+          </ng-container>
+        </div>
+
+        <p-floatlabel variant="on" *ngIf="field.type != 'radio'">
+          <input
+            pInputText
+            id="field.label"
+            [type]="field.type"
+            [formControlName]="field.controlName"
+            autocomplete="disabled"
+          />
+          <label for="field.label">{{ field.label }}</label>
+        </p-floatlabel>
+      </ng-container>
+      <div style="display: flex; flex-direction: row; column-gap: 20px">
+        <p-toast />
+        <p-button
+          label="Submit"
+          variant="outlined"
+          severity="success"
+          (click)="submit()"
+        />
+        <p-button
+          label="Export"
+          variant="outlined"
+          severity="help"
+          (click)="exportUserDetails()"
+        />
+      </div>
+    </form>
+    <!-- </div> -->
+  </p-card>
+</div>
