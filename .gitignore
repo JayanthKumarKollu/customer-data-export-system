@@ -1,0 +1,12 @@
+# Angular
+frontend/node_modules
+frontend/dist
+
+# Backend
+backend/node_modules
+
+# Environment
+backend/.env
+
+# Logs
+*.log
