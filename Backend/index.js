@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 const connect = require("./src/DB/Connection");
@@ -10,27 +10,30 @@ app.use(cors());
 app.use(express.json());
 require("dotenv").config();
 app.use(
-    cors({
-      origin: "http://localhost:4200",
-      methods: "GET,POST,PUT,DELETE",
-      allowedHeaders: "Content-Type,Authorization",
-    })
-  );
+  cors({
+    origin: "http://localhost:4200",
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
+  }),
+);
 
-app.use('/export',exportExcel);
+app.use("/export", exportExcel);
 
-app.use("/addUser",userRoute);
+app.use("/addUser", userRoute);
 
 const PORT = process.env.PORT || 3000;
 
-const start = async ()=>{
-try {
-    await connect("mongodb://localhost:27017/SelectCars");
+const start = async () => {
+  try {
+    //
+    // mongodb://localhost:27017/SelectCars
+    await connect(
+      "mongodb+srv://jayanthjai8464_db_user:AGNEX8dbfeqjbNpU@userdetails.hdpsgku.mongodb.net/",
+    );
     app.listen(PORT, console.log(`Server is running on ${PORT}...`));
-} catch (error) {
- console.log(error)   
-}
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-}
-
-start()
+start();
