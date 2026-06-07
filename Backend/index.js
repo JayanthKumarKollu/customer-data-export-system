@@ -30,7 +30,9 @@ const start = async () => {
     await connect(
       "mongodb+srv://jayanthjai8464_db_user:AGNEX8dbfeqjbNpU@userdetails.hdpsgku.mongodb.net/",
     );
-    app.listen(port, console.log(`Server is running on ${port}...`));
+    app.listen(port, () => {
+      console.log(`Server is running on ${port}...`);
+    });
   } catch (error) {
     console.log(error);
   }
