@@ -11,7 +11,7 @@ app.use(express.json());
 require("dotenv").config();
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: process.env.FRONTEND_URL,
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
   }),
@@ -27,9 +27,10 @@ const start = async () => {
   try {
     //
     // mongodb://localhost:27017/SelectCars
-    await connect(
-      "mongodb+srv://jayanthjai8464_db_user:AGNEX8dbfeqjbNpU@userdetails.hdpsgku.mongodb.net/",
-    );
+    // "mongodb+srv://jayanthjai8464_db_user:AGNEX8dbfeqjbNpU@userdetails.hdpsgku.mongodb.net/",
+    console.log("Connecting DB...");
+    await connect(process.env.CONNECTION_STRING);
+    console.log("DB Connected");
     app.listen(port, () => {
       console.log(`Server is running on ${port}...`);
     });
