@@ -21,7 +21,7 @@ app.use("/export", exportExcel);
 
 app.use("/addUser", userRoute);
 
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
@@ -30,7 +30,7 @@ const start = async () => {
     await connect(
       "mongodb+srv://jayanthjai8464_db_user:AGNEX8dbfeqjbNpU@userdetails.hdpsgku.mongodb.net/",
     );
-    app.listen(PORT, console.log(`Server is running on ${PORT}...`));
+    app.listen(port, console.log(`Server is running on ${port}...`));
   } catch (error) {
     console.log(error);
   }
